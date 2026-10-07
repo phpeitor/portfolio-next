@@ -177,7 +177,7 @@ export function TokenUsage({ className, rankings }: Props): React.ReactElement {
               </div>
             </div>
 
-            <ol className="mt-4 space-y-2.5">
+            <ol className="mt-4 max-h-36 space-y-2.5 overflow-y-auto pr-1 [scrollbar-color:rgba(247,246,241,0.35)_transparent] [scrollbar-width:thin]">
               {displayRows.map((row, index) => (
                 <li
                   key={row.model}

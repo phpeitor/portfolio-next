@@ -82,7 +82,7 @@ export async function getModelRankings(): Promise<ModelRankings | null> {
     if (!allLatestRows.length) return null
 
     return {
-      rows: allLatestRows.slice(0, 5),
+      rows: allLatestRows.slice(0, 10),
       totalTokens: allLatestRows.reduce((total, row) => total + row.tokens, 0),
       updatedAt: payload.meta?.as_of ?? latestDate,
       sourceUrl: "https://openrouter.ai/rankings",
