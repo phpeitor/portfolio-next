@@ -2,7 +2,7 @@
 
 ## Contexto del repositorio
 
-`Nextjs-Developer-Portfolio` es un portafolio editorial de una sola página para CodeBucks. El sitio está implementado, no es un starter con secciones pendientes: `app/page.tsx` compone hero, práctica, proyectos, capacidades, proceso, stack y contacto.
+`Nextjs-Developer-Portfolio` es un portafolio editorial de una sola página para amvsoft.tech. El sitio está implementado, no es un starter con secciones pendientes: `app/page.tsx` compone hero, práctica, proyectos, capacidades, proceso, stack y contacto.
 
 La aplicación usa Next.js App Router, Server Components por defecto y componentes cliente solo para interacción, animación o APIs del navegador. El contenido repetitivo del sitio está centralizado en `lib/content.ts`.
 

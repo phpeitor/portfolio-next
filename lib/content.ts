@@ -251,16 +251,16 @@ export const FOOTER_COLUMNS = [
   {
     title: "Contact",
     links: [
-      ["codebucks.agency", "mailto:codebucks27@gmail.com"],
+      ["amvsoft.tech", "mailto:hello@amvsoft.tech"],
       ["Start a project", "#contact"],
     ],
   },
   {
     title: "Social",
     links: [
-      ["GitHub ↗", "https://github.com/codebucks27"],
-      ["LinkedIn ↗", "https://www.linkedin.com/in/codebucks/"],
-      ["X / Twitter ↗", "https://x.com/code_bucks"],
+      ["GitHub ↗", "https://github.com/phpeitor"],
+      ["LinkedIn ↗", "https://www.linkedin.com/in/amvsoft/"],
+      ["X / Twitter ↗", "https://x.com/amvsoft"],
     ],
   },
 ] as const

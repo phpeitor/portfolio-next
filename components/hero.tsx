@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils"
 import type { GeoLocation } from "@/lib/location"
 import type { Weather } from "@/lib/weather"
 import { TokenUsage as HeroWidget } from "@/components/widgets/token-usage"
+import { useLanguage } from "@/components/language-provider"
 
 // Day vs. night background media. The day clip is the bright blue-sky scene;
 // the night clip is the warm golden-hour scene. Posters are the first frame of
@@ -49,6 +50,7 @@ type HeroProps = {
 }
 
 export function Hero({ location, weather }: HeroProps): React.ReactElement {
+  const { t } = useLanguage()
   const sectionRef = React.useRef<HTMLElement>(null)
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const [videoReady, setVideoReady] = React.useState(false)
@@ -183,27 +185,25 @@ export function Hero({ location, weather }: HeroProps): React.ReactElement {
                 {...reveal(0.2)}
                 className="caption-uppercase text-overlay-cream/70"
               >
-                Full-stack · AI-first engineer
+                {t("Full-stack · AI-first engineer")}
               </motion.p>
 
               <motion.h1
                 {...reveal(0.28)}
                 className="mt-5 text-[clamp(2.25rem,4.8vw,4.25rem)] leading-[1.04] tracking-[-0.03em]"
               >
-                Modern software,
+                {t("Modern software,")}
                 <br />
-                built to think,
+                {t("built to think,")}
                 <br />
-                shipped end&#8209;to&#8209;end.
+                {t("shipped end-to-end.")}
               </motion.h1>
 
               <motion.p
                 {...reveal(0.38)}
                 className="mt-6 max-w-[560px] text-[15px] leading-[1.6] text-overlay-cream/80 sm:text-base"
               >
-                I&apos;m CodeBucks, a full-stack engineer designing and shipping
-                AI-native products from the inference layer to the last
-                interaction.
+                {t("I'm amvsoft.tech, a full-stack engineer designing and shipping AI-native products from the inference layer to the last interaction.")}
               </motion.p>
 
               <motion.div
@@ -215,7 +215,7 @@ export function Hero({ location, weather }: HeroProps): React.ReactElement {
                   className="h-11 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground hover:bg-primary-active focus-visible:ring-primary/40"
                 >
                   <Link href="#work">
-                    View selected work
+                    {t("View selected work")}
                     <ArrowUpRightIcon size={16} weight="bold" />
                   </Link>
                 </Button>
@@ -224,7 +224,7 @@ export function Hero({ location, weather }: HeroProps): React.ReactElement {
                   variant="ghost"
                   className="h-11 rounded-md border border-overlay-cream/25 bg-overlay-cream/[0.06] px-5 text-sm font-medium text-overlay-cream backdrop-blur-[2px] hover:bg-overlay-cream/15 hover:text-overlay-cream"
                 >
-                  <Link href="#contact">Get in touch</Link>
+                  <Link href="#contact">{t("Get in touch")}</Link>
                 </Button>
               </motion.div>
             </div>
@@ -270,7 +270,7 @@ export function Hero({ location, weather }: HeroProps): React.ReactElement {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success/70 opacity-75" />
                 <span className="relative inline-flex size-1.5 rounded-full bg-success" />
               </span>
-              Available for new work · Q3 2026
+              {t("Available for new work · Q3 2026")}
             </motion.p>
 
             {/* Locator follows the availability pill: stacked beneath it on
@@ -281,7 +281,7 @@ export function Hero({ location, weather }: HeroProps): React.ReactElement {
             >
               <span className="hidden items-center gap-3 sm:flex">
                 <ArrowDownIcon size={14} weight="regular" />
-                <span className="caption-uppercase">Scroll</span>
+                <span className="caption-uppercase">{t("Scroll")}</span>
                 <span aria-hidden className="h-px w-10 bg-overlay-cream/25" />
               </span>
               <LiveLocator location={location} weather={weather} />

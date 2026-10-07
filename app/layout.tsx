@@ -4,16 +4,17 @@ import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
+import { LanguageProvider } from "@/components/language-provider"
 import { cn } from "@/lib/utils"
 
 const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" })
 const fontMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://codebucks.agency"),
+  metadataBase: new URL("https://amvsoft.tech"),
   title: {
-    default: "CodeBucks · Full-stack engineer, AI-first",
-    template: "%s · CodeBucks",
+    default: "amvsoft.tech · Full-stack engineer, AI-first",
+    template: "%s · amvsoft.tech",
   },
   description:
     "Full-stack engineer designing and shipping AI-native software from the inference layer to the last interaction.",
@@ -42,9 +43,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       )}
     >
       <body>
-        <SiteHeader />
-        {children}
-        <SiteFooter />
+        <LanguageProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </LanguageProvider>
       </body>
     </html>
   )

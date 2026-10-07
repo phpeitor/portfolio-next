@@ -3,11 +3,13 @@
 import { Reveal, RevealGroup } from "@/components/reveal"
 import { SectionShell } from "@/components/section-shell"
 import { PRACTICE_AREAS } from "@/lib/content"
+import { useLanguage } from "@/components/language-provider"
 
 export function PracticeStrip(): React.ReactElement {
+  const { t } = useLanguage()
   return (
     <section
-      aria-label="Practice areas"
+      aria-label={t("Practice areas")}
       className="border-y border-hairline py-9"
     >
       <SectionShell>
@@ -25,7 +27,7 @@ export function PracticeStrip(): React.ReactElement {
             >
               <span className="eyebrow text-muted-ink uppercase">{item.k}</span>
               <span className="text-sm font-medium tracking-[-0.01em] text-ink">
-                {item.v}
+                {t(item.v)}
               </span>
             </Reveal>
           ))}

@@ -9,8 +9,10 @@ import { Reveal, RevealGroup } from "@/components/reveal"
 import { SectionHead, SectionShell } from "@/components/section-shell"
 import { ABOUT_META } from "@/lib/content"
 import contactCover from "@/public/assets/contact-cover-image.png"
+import { useLanguage } from "@/components/language-provider"
 
 export function Contact(): React.ReactElement {
+  const { t } = useLanguage()
   return (
     <div className="relative isolate overflow-hidden">
       {/* Shared editorial backdrop behind the About + Contact bands only */}
@@ -32,18 +34,17 @@ export function Contact(): React.ReactElement {
           <SectionHead
             numeral="05"
             label="About"
-            aside="Who"
+            aside={t("Who")}
             titleId="about-h"
-            title="About"
+            title={t("About")}
             hiddenTitle
           />
           <RevealGroup className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
             <Reveal as="blockquote" className="lg:col-span-8">
               <p className="max-w-[22ch] text-[clamp(1.5rem,2.6vw,2.125rem)] leading-[1.25] tracking-[-0.02em] text-ink">
-                I&apos;m a developer who cares about both the{" "}
-                <span className="text-ink">system</span> and the{" "}
-                <span className="text-ink">surface</span>: the architecture
-                users never see, and the interface they feel every second.
+                {t("I'm a developer who cares about both the")}{" "}
+                <span className="text-ink">{t("system")}</span> {t("and the")}{" "}
+                  <span className="text-ink">{t("surface")}</span>: {t("the architecture users never see, and the interface they feel every second.")}
               </p>
             </Reveal>
 
@@ -80,22 +81,20 @@ export function Contact(): React.ReactElement {
                 className="eyebrow flex items-center gap-3 text-muted-ink uppercase lg:justify-end"
               >
                 <span>06</span>
-                <span className="text-ink">Contact</span>
+                <span className="text-ink">{t("Contact")}</span>
               </Reveal>
               <Reveal
                 as="h2"
                 id="contact-h"
                 className="mt-6 max-w-[18ch] text-[clamp(1.5rem,2.6vw,2.125rem)] leading-[1.25] tracking-[-0.02em] lg:ml-auto"
               >
-                Have an AI product, SaaS idea, or workflow worth building?
+                {t("Have an AI product, SaaS idea, or workflow worth building?")}
               </Reveal>
               <Reveal
                 as="p"
                 className="mt-5 max-w-[48ch] text-base text-body lg:ml-auto"
               >
-                Send a short brief. I&apos;ll help turn it into a focused,
-                shippable product, usually within a couple of days, sometimes
-                the same one.
+                {t("Send a short brief. I'll help turn it into a focused, shippable product, usually within a couple of days, sometimes the same one.")}
               </Reveal>
 
               <Reveal className="mt-9 inline-flex flex-wrap gap-3 lg:justify-end">
@@ -104,11 +103,11 @@ export function Contact(): React.ReactElement {
                   className="h-11 rounded-md bg-primary px-5 text-sm font-medium text-on-primary hover:bg-primary-active"
                 >
                   <Link
-                    href="mailto:codebucks27@gmail.com"
+                    href="mailto:hello@amvsoft.tech"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Start a conversation
+                    {t("Start a conversation")}
                     <ArrowUpRightIcon size={14} weight="bold" />
                   </Link>
                 </Button>
@@ -117,7 +116,7 @@ export function Contact(): React.ReactElement {
                   variant="outline"
                   className="h-11 rounded-md border-hairline-strong bg-surface-card px-5 text-sm font-medium text-ink hover:bg-canvas-soft"
                 >
-                  <Link href="#">Book a 20-min intro</Link>
+                  <Link href="#">{t("Book a 20-min intro")}</Link>
                 </Button>
               </Reveal>
             </RevealGroup>

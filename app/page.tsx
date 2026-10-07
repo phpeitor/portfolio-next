@@ -10,7 +10,7 @@ import { Stack } from "@/components/stack"
 import { getLocation } from "@/lib/location"
 import { getWeather } from "@/lib/weather"
 
-const title = "CodeBucks · Full-stack engineer, AI-first"
+const title = "amvsoft.tech · Full-stack engineer, AI-first"
 const description =
   "Full-stack engineer designing and shipping AI-native software from the inference layer to the last interaction."
 
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title,
     description,
     url: "/",
-    siteName: "CodeBucks",
+    siteName: "amvsoft.tech",
     locale: "en_US",
     type: "website",
     images: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    creator: "@code_bucks",
+    creator: "@amvsoft",
     images: ["/og.png"],
   },
 }

@@ -12,6 +12,7 @@ import { ArrowUpRightIcon, GaugeIcon, XIcon } from "@phosphor-icons/react"
 
 import { TOKEN_USAGE } from "@/lib/content"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/components/language-provider"
 
 const PERIOD = {
   label: "28 days",
@@ -47,6 +48,7 @@ type Props = {
 }
 
 export function TokenUsage({ className }: Props): React.ReactElement {
+  const { t } = useLanguage()
   const [collapsed, setCollapsed] = React.useState(false)
   const prefersReducedMotion = useReducedMotion()
 
@@ -86,7 +88,7 @@ export function TokenUsage({ className }: Props): React.ReactElement {
             aria-hidden
           />
 
-          <span className="truncate">Token usage</span>
+          <span className="truncate">{t("Token usage")}</span>
 
           <span className="font-mono text-[10px] tracking-[0.04em] text-overlay-cream/55">
             {formatTokens(TOTAL_TOKENS)}
@@ -116,7 +118,7 @@ export function TokenUsage({ className }: Props): React.ReactElement {
                 aria-hidden
               />
 
-              <span className="truncate">Token usage</span>
+              <span className="truncate">{t("Token usage")}</span>
 
               <span className="text-overlay-cream/70">· {PERIOD.label}</span>
             </button>
@@ -137,7 +139,7 @@ export function TokenUsage({ className }: Props): React.ReactElement {
                 <p className="text-[30px] leading-none tracking-[-0.025em]">
                   {formatTokens(TOTAL_TOKENS)}
                 </p>
-                <p className="text-[12px] text-overlay-cream/60">tokens</p>
+                <p className="text-[12px] text-overlay-cream/60">{t("tokens")}</p>
               </div>
 
               <div
@@ -205,14 +207,14 @@ export function TokenUsage({ className }: Props): React.ReactElement {
 
             <div className="mt-4 flex items-center justify-between gap-3 border-t border-overlay-cream/12 pt-3">
               <p className="font-mono text-[11px] tracking-[0.04em] text-overlay-cream/55">
-                Updated {PERIOD.updatedHoursAgo}h ago
+                {t("Updated")} {PERIOD.updatedHoursAgo}h ago
               </p>
 
               <Link
                 href={PERIOD.url}
                 className="inline-flex shrink-0 items-center gap-1 text-[12px] text-overlay-cream/85 transition-colors hover:text-overlay-cream focus-visible:ring-2 focus-visible:ring-overlay-cream/45 focus-visible:outline-none"
               >
-                See breakdown
+                {t("See breakdown")}
                 <ArrowUpRightIcon size={12} weight="bold" />
               </Link>
             </div>

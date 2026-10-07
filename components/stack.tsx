@@ -14,6 +14,7 @@ import { SectionHead, SectionShell } from "@/components/section-shell"
 import { STACK_PANES } from "@/lib/content"
 import { REVEAL_EASE, viewportOnce } from "@/lib/motion"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/components/language-provider"
 
 // Each line fades up as the editor "reads" the file. Panes cascade, then the
 // rows within each pane cascade — like a config populating top-to-bottom.
@@ -33,6 +34,7 @@ const lineStagger: Variants = {
 }
 
 export function Stack(): React.ReactElement {
+  const { t } = useLanguage()
   const reduceMotion = useReducedMotion()
   const editorRef = React.useRef<HTMLDivElement>(null)
   const editorInView = useInView(editorRef, { once: true, margin: "-80px" })
@@ -53,21 +55,19 @@ export function Stack(): React.ReactElement {
         <SectionHead
           stacked
           numeral="04"
-          label="Stack"
-          aside="Tools / 2026"
+          label={t("Stack")}
+          aside={t("Tools / 2026")}
           titleId="stack-h"
-          title="A small, durable toolchain I trust to take an idea all the way to production."
+          title={t("A small, durable toolchain I trust to take an idea all the way to production.")}
         />
 
         <RevealGroup className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <h3 className="text-[1.625rem] tracking-[-0.0125em]">
-              A boring stack, on purpose.
+              {t("A boring stack, on purpose.")}
             </h3>
             <p className="mt-4 max-w-[36ch] text-[15px] leading-[1.6] text-body">
-              Stable defaults, opinionated where it matters, and replaceable
-              where it doesn&apos;t. The result is a product that ships faster
-              the second time and the tenth time.
+              {t("Stable defaults, opinionated where it matters, and replaceable where it doesn't. The result is a product that ships faster the second time and the tenth time.")}
             </p>
           </Reveal>
 
@@ -83,7 +83,7 @@ export function Stack(): React.ReactElement {
                   <span className="size-2.5 rounded-full bg-term-green" />
                 </span>
                 <span className="ml-1.5 tracking-[0.04em]">
-                  ~/codebucks / stack.config.ts
+                  ~/amvsoft / stack.config.ts
                 </span>
                 <span className="ml-auto flex items-center gap-1.5 text-muted-soft">
                   <motion.span
@@ -99,7 +99,7 @@ export function Stack(): React.ReactElement {
                     }
                     transition={{ duration: 0.4, ease: REVEAL_EASE }}
                   />
-                  {saved ? "saved" : "editing"}
+                  {saved ? t("saved") : t("editing")}
                 </span>
               </div>
               <motion.div

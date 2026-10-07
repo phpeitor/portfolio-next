@@ -6,6 +6,7 @@ import { Reveal, RevealGroup } from "@/components/reveal"
 import { SectionHead, SectionShell } from "@/components/section-shell"
 import { APPROACH_STEPS } from "@/lib/content"
 import { REVEAL_EASE } from "@/lib/motion"
+import { useLanguage } from "@/components/language-provider"
 
 // The top rule traces left-to-right as the steps land, reading the four moves
 // as one ordered path rather than four separate cells.
@@ -15,6 +16,7 @@ const drawRule: Variants = {
 }
 
 export function Approach(): React.ReactElement {
+  const { t } = useLanguage()
   const reduceMotion = useReducedMotion()
 
   return (
@@ -23,10 +25,10 @@ export function Approach(): React.ReactElement {
         <SectionHead
           stacked
           numeral="03"
-          label="Approach"
-          aside="How I work"
+          label={t("Approach")}
+          aside={t("How I work")}
           titleId="appr-h"
-          title="Four moves, in order. Most of the work is removing things before adding them."
+          title={t("Four moves, in order. Most of the work is removing things before adding them.")}
         />
         <RevealGroup
           as="ol"
@@ -49,9 +51,9 @@ export function Approach(): React.ReactElement {
               />
               <span className="eyebrow text-muted-ink">{step.k}</span>
               <h3 className="text-lg leading-[1.25] font-medium tracking-[-0.01em]">
-                {step.t}
+                {t(step.t)}
               </h3>
-              <p className="text-sm leading-[1.55] text-body">{step.d}</p>
+              <p className="text-sm leading-[1.55] text-body">{t(step.d)}</p>
             </Reveal>
           ))}
         </RevealGroup>

@@ -16,6 +16,7 @@ import { SectionShell } from "@/components/section-shell"
 import { PROJECTS, type Project } from "@/lib/content"
 import { REVEAL_EASE } from "@/lib/motion"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/components/language-provider"
 
 // Each card holds the stage for this long before the timer advances to the next.
 const SLIDE_SECONDS = 7
@@ -73,6 +74,7 @@ function ProjectCard({
   isActive: boolean
   reduceMotion: boolean | null
 }): React.ReactElement {
+  const { t } = useLanguage()
   return (
     <motion.div
       aria-hidden={!isActive}
@@ -128,11 +130,11 @@ function ProjectCard({
             </div>
 
             <h3 className="mt-6 text-[1.625rem] tracking-[-0.0125em]">
-              {project.title}
+              {t(project.title)}
             </h3>
 
             <p className="mt-3 max-w-[44ch] text-[15px] leading-[1.6] text-body">
-              {project.description}
+              {t(project.description)}
             </p>
 
             <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -142,7 +144,7 @@ function ProjectCard({
                   variant="outline"
                   className="rounded-full border-hairline px-2 font-mono text-[10px] tracking-[0.12em] text-ink uppercase"
                 >
-                  {tag}
+                  {t(tag)}
                 </Badge>
               ))}
             </div>
@@ -153,7 +155,7 @@ function ProjectCard({
                 tabIndex={isActive ? undefined : -1}
                 className="group/link inline-flex items-center gap-2 border-b border-transparent pb-0.5 text-sm font-medium text-ink transition-[gap,border-color] hover:gap-3 hover:border-ink"
               >
-                View case study
+                {t("View case study")}
                 <ArrowUpRightIcon
                   size={14}
                   weight="bold"
@@ -361,6 +363,7 @@ function Timeline({
 }
 
 export function SelectedWork(): React.ReactElement {
+  const { t } = useLanguage()
   const reduceMotion = useReducedMotion()
   const [active, setActive] = React.useState(0)
 
@@ -435,7 +438,7 @@ export function SelectedWork(): React.ReactElement {
           <div className="flex items-center gap-3">
             <span className="eyebrow text-muted-ink">01</span>
 
-            <span className="eyebrow text-ink uppercase">Selected work</span>
+            <span className="eyebrow text-ink uppercase">{t("Selected work")}</span>
           </div>
 
           <span className="hidden font-mono text-[11px] tracking-[0.1em] text-muted-ink uppercase md:block">
@@ -447,8 +450,7 @@ export function SelectedWork(): React.ReactElement {
           id="work-h"
           className="mt-10 max-w-[20ch] text-[clamp(2rem,4.4vw,2.75rem)] tracking-[-0.025em]"
         >
-          A focused set of recent AI products and systems, each shipped to real
-          users.
+          {t("A focused set of recent AI products and systems, each shipped to real users.")}
         </h2>
       </SectionShell>
 
@@ -458,7 +460,7 @@ export function SelectedWork(): React.ReactElement {
             {/* Project labels — vertical list at lg+, a centered horizontal
                 scroll strip below lg (sits above the card). */}
             <nav
-              aria-label="Project list"
+              aria-label={t("Project list")}
               className="order-1 flex flex-col lg:col-span-3 lg:col-start-1 lg:row-start-1"
             >
               <ol

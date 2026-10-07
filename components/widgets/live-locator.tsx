@@ -14,6 +14,7 @@ import {
 import { cn } from "@/lib/utils"
 import type { GeoLocation } from "@/lib/location"
 import type { Weather } from "@/lib/weather"
+import { useLanguage } from "@/components/language-provider"
 
 const TEMP_UNIT: "celsius" | "fahrenheit" = "fahrenheit"
 const TEMP_SYMBOL = TEMP_UNIT === "fahrenheit" ? "°F" : "°C"
@@ -54,6 +55,7 @@ export function LiveLocator({
   location,
   weather,
 }: Props): React.ReactElement {
+  const { t } = useLanguage()
   // Live wall-clock. Null on the server and the first client paint (so the SSR
   // and hydrated markup match), then set on mount and ticked every 30s.
   const [now, setNow] = React.useState<Date | null>(null)
@@ -109,8 +111,8 @@ export function LiveLocator({
           </span>
           <span
             className="inline-flex items-center gap-1.5"
-            aria-label={`${wx.label}, ${Math.round(weather.temperature)}${TEMP_SYMBOL}`}
-            title={wx.label}
+            aria-label={`${t(wx.label)}, ${Math.round(weather.temperature)}${TEMP_SYMBOL}`}
+            title={t(wx.label)}
           >
             <WeatherIcon
               size={13}

@@ -7,6 +7,7 @@ import { ListIcon, XIcon } from "@phosphor-icons/react"
 
 import { NAV_LINKS } from "@/lib/content"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/components/language-provider"
 
 type Variant = "overlay" | "solid"
 
@@ -58,6 +59,7 @@ const VARIANT_STYLES: Record<
 }
 
 export function SiteHeader(): React.ReactElement {
+  const { language, setLanguage, t } = useLanguage()
   const prefersReducedMotion = useReducedMotion()
   const [menuOpen, setMenuOpen] = React.useState(false)
   // Overlay while the hero is on screen (cream type over the video), solid once
@@ -126,7 +128,7 @@ export function SiteHeader(): React.ReactElement {
 
         {/* Primary nav — desktop */}
         <nav
-          aria-label="Primary"
+          aria-label={t("Primary")}
           className={cn(
             "hidden items-center gap-8 text-[13.5px] md:flex",
             styles.nav
@@ -141,7 +143,7 @@ export function SiteHeader(): React.ReactElement {
                 styles.navLink
               )}
             >
-              {link.label}
+              {t(link.label)}
             </Link>
           ))}
         </nav>
@@ -157,13 +159,24 @@ export function SiteHeader(): React.ReactElement {
             )}
           >
             <span aria-hidden className="size-1.5 rounded-full bg-success" />
-            <span>Let&apos;s talk</span>
+            <span>{t("Let's talk")}</span>
           </Link>
+          <button
+            type="button"
+            onClick={() => setLanguage(language === "en" ? "es" : "en")}
+            aria-label={language === "en" ? "Cambiar a español" : "Switch to English"}
+            className={cn(
+              "hidden h-9 rounded-full border px-3 text-[11px] font-medium tracking-[0.08em] transition-colors md:inline-flex md:items-center",
+              styles.action
+            )}
+          >
+            {language === "en" ? "ES" : "EN"}
+          </button>
 
           {/* Hamburger — mobile/tablet only */}
           <button
             type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? t("Close menu") : t("Open menu")}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             onClick={() => setMenuOpen((open) => !open)}
@@ -200,7 +213,7 @@ export function SiteHeader(): React.ReactElement {
 
             <motion.nav
               id="mobile-nav"
-              aria-label="Primary"
+              aria-label={t("Primary")}
               initial={
                 prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -8 }
               }
@@ -227,7 +240,7 @@ export function SiteHeader(): React.ReactElement {
                     styles.panelLink
                   )}
                 >
-                  {link.label}
+                  {t(link.label)}
                 </Link>
               ))}
 
@@ -248,8 +261,19 @@ export function SiteHeader(): React.ReactElement {
                   aria-hidden
                   className="size-1.5 rounded-full bg-success"
                 />
-                <span>Let&apos;s talk</span>
+                <span>{t("Let's talk")}</span>
               </Link>
+              <button
+                type="button"
+                onClick={() => setLanguage(language === "en" ? "es" : "en")}
+                className={cn(
+                  "flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-[15px] transition-colors",
+                  styles.panelLink
+                )}
+              >
+                <span>{language === "en" ? "Español" : "English"}</span>
+                <span className="font-mono text-[11px]">{language === "en" ? "ES" : "EN"}</span>
+              </button>
             </motion.nav>
           </>
         )}

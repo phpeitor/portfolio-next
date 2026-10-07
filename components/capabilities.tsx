@@ -5,18 +5,20 @@ import { CAPABILITY_ICONS } from "@/components/capability-icons"
 import { Reveal, RevealGroup } from "@/components/reveal"
 import { SectionHead, SectionShell } from "@/components/section-shell"
 import { CAPABILITIES } from "@/lib/content"
+import { useLanguage } from "@/components/language-provider"
 
 export function Capabilities(): React.ReactElement {
+  const { t } = useLanguage()
   return (
     <section id="capabilities" aria-labelledby="cap-h" className="section-band">
       <SectionShell>
         <SectionHead
           stacked
           numeral="02"
-          label="Capabilities"
-          aside="What I do"
+          label={t("Capabilities")}
+          aside={t("What I do")}
           titleId="cap-h"
-          title="Three practices that compound engineering, AI systems, and interface design."
+          title={t("Three practices that compound engineering, AI systems, and interface design.")}
         />
 
         <RevealGroup className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -32,10 +34,10 @@ export function Capabilities(): React.ReactElement {
                     <span className="eyebrow text-muted-ink">{cap.num}</span>
                   </div>
                   <h3 className="text-[1.625rem] tracking-[-0.0125em]">
-                    {cap.title}
+                    {t(cap.title)}
                   </h3>
                   <p className="text-[15px] leading-[1.6] text-body">
-                    {cap.body}
+                    {t(cap.body)}
                   </p>
                   <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5 border-t border-hairline-soft pt-4">
                     {cap.items.map((item) => (
