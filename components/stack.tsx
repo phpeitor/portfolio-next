@@ -83,7 +83,7 @@ export function Stack(): React.ReactElement {
                   <span className="size-2.5 rounded-full bg-term-green" />
                 </span>
                 <span className="ml-1.5 tracking-[0.04em]">
-                  ~/amvsoft / stack.config.ts
+                  ~/metadatape.com / stack.config.ts
                 </span>
                 <span className="ml-auto flex items-center gap-1.5 text-muted-soft">
                   <motion.span

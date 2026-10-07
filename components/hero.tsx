@@ -203,7 +203,7 @@ export function Hero({ location, weather }: HeroProps): React.ReactElement {
                 {...reveal(0.38)}
                 className="mt-6 max-w-[560px] text-[15px] leading-[1.6] text-overlay-cream/80 sm:text-base"
               >
-                {t("I'm amvsoft.tech, a full-stack engineer designing and shipping AI-native products from the inference layer to the last interaction.")}
+                {t("I'm phpeitor, a full-stack engineer designing and shipping AI-native products from the inference layer to the last interaction.")}
               </motion.p>
 
               <motion.div

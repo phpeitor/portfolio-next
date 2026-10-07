@@ -207,7 +207,7 @@ export function TokenUsage({ className }: Props): React.ReactElement {
 
             <div className="mt-4 flex items-center justify-between gap-3 border-t border-overlay-cream/12 pt-3">
               <p className="font-mono text-[11px] tracking-[0.04em] text-overlay-cream/55">
-                {t("Updated")} {PERIOD.updatedHoursAgo}h ago
+                {t("Updated")} {PERIOD.updatedHoursAgo}h
               </p>
 
               <Link

@@ -12,8 +12,8 @@ const TRANSLATIONS: Record<string, string> = {
   "Modern software,": "Software moderno,",
   "built to think,": "diseñado para pensar,",
   "shipped end-to-end.": "lanzado de principio a fin.",
-  "I'm amvsoft.tech, a full-stack engineer designing and shipping AI-native products from the inference layer to the last interaction.":
-    "Soy amvsoft.tech, un ingeniero full-stack que diseña y lanza productos nativos de IA, desde la inferencia hasta la última interacción.",
+  "I'm phpeitor, a full-stack engineer designing and shipping AI-native products from the inference layer to the last interaction.":
+  "Soy phpeitor, un ingeniero full-stack que diseña y lanza productos nativos de IA, desde la inferencia hasta la última interacción.",
   "View selected work": "Ver proyectos destacados",
   "Get in touch": "Contactar",
   "Available for new work · Q3 2026": "Disponible para nuevos proyectos · Q3 2026",
@@ -30,7 +30,7 @@ const TRANSLATIONS: Record<string, string> = {
     "Cuatro pasos, en orden. Gran parte del trabajo consiste en quitar antes de añadir.",
   "A small, durable toolchain I trust to take an idea all the way to production.":
     "Una cadena de herramientas pequeña y sólida para llevar una idea hasta producción.",
-  "A boring stack, on purpose.": "Una stack aburrida, a propósito.",
+  "A boring stack, on purpose.": "Una pila aburrida, a propósito.",
   "Stable defaults, opinionated where it matters, and replaceable where it doesn't. The result is a product that ships faster the second time and the tenth time.":
     "Valores estables por defecto, decisiones firmes donde importan y piezas reemplazables donde no. El resultado es un producto que se entrega más rápido cada vez.",
   "Have an AI product, SaaS idea, or workflow worth building?":
