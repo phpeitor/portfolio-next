@@ -251,7 +251,7 @@ export const FOOTER_COLUMNS = [
   {
     title: "Contact",
     links: [
-      ["amvsoft.tech", "mailto:hello@amvsoft.tech"],
+      ["amvsoft.tech", "mailto:admin@metadatape.com"],
       ["Start a project", "#contact"],
     ],
   },

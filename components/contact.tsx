@@ -103,7 +103,7 @@ export function Contact(): React.ReactElement {
                   className="h-11 rounded-md bg-primary px-5 text-sm font-medium text-on-primary hover:bg-primary-active"
                 >
                   <Link
-                    href="mailto:hello@amvsoft.tech"
+                    href="mailto:admin@metadatape.com"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
