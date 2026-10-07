@@ -59,7 +59,7 @@ export function SiteFooter(): React.ReactElement {
           <span>
             © {year} · Designed &amp; built with care by{" "}
             <Link
-              href="https://amvsoft.tech"
+              href="https://www.instagram.com/amvsoft.tech"
               className="text-body transition-colors hover:text-ink"
             >
               amvsoft.tech

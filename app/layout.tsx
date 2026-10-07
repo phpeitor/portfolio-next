@@ -11,9 +11,9 @@ const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" })
 const fontMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://amvsoft.tech"),
+  metadataBase: new URL("https://www.instagram.com/amvsoft.tech"),
   title: {
-    default: "amvsoft.tech · Full-stack engineer, AI-first",
+    default: "Metadatape · Full-stack engineer, AI-first",
     template: "%s · amvsoft.tech",
   },
   description:
