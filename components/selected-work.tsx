@@ -164,7 +164,7 @@ function ProjectCard({
               </Link>
 
               <span className="font-mono text-[11px] tracking-[0.08em] text-muted-ink">
-                {project.status}
+                {t(project.status)}
               </span>
             </div>
           </div>
@@ -507,7 +507,7 @@ export function SelectedWork(): React.ReactElement {
                               : "text-muted-ink group-hover:text-body"
                           )}
                         >
-                          {project.title}
+                          {t(project.title)}
                         </span>
                       </button>
                     </li>

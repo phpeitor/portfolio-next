@@ -55,9 +55,9 @@ export function Contact(): React.ReactElement {
                   className="flex items-baseline justify-between gap-4 border-b border-hairline py-4 font-mono text-[12.5px]"
                 >
                   <dt className="text-[11px] tracking-[0.08em] text-muted-ink uppercase">
-                    {k}
+                    {t(k)}
                   </dt>
-                  <dd className="text-ink">{v}</dd>
+                  <dd className="text-ink">{t(v)}</dd>
                 </div>
               ))}
             </Reveal>
