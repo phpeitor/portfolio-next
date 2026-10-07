@@ -5,6 +5,7 @@ import Link from "next/link"
 import { SectionShell } from "@/components/section-shell"
 import { FOOTER_COLUMNS } from "@/lib/content"
 import { useLanguage } from "@/components/language-provider"
+import { getCurrentQuarter } from "@/lib/availability"
 
 export function SiteFooter(): React.ReactElement {
   const { t } = useLanguage()
@@ -49,7 +50,9 @@ export function SiteFooter(): React.ReactElement {
           <div>
             <h4 className="caption-uppercase mb-4 text-muted-ink">{t("Now")}</h4>
             <ul className="flex flex-col gap-2 text-sm">
-              <li className="text-ink">Q3 2026 · 2 slots</li>
+              <li className="text-ink">
+                {getCurrentQuarter()} · 2 {t("slots")}
+              </li>
               <li className="text-body">Remote · Perú</li>
             </ul>
           </div>

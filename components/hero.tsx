@@ -18,6 +18,7 @@ import type { Weather } from "@/lib/weather"
 import { TokenUsage as HeroWidget } from "@/components/widgets/token-usage"
 import { useLanguage } from "@/components/language-provider"
 import type { ModelRankings } from "@/lib/model-rankings"
+import { getCurrentQuarter } from "@/lib/availability"
 
 // Day vs. night background media. The day clip is the bright blue-sky scene;
 // the night clip is the warm golden-hour scene. Posters are the first frame of
@@ -276,7 +277,7 @@ export function Hero({
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success/70 opacity-75" />
                 <span className="relative inline-flex size-1.5 rounded-full bg-success" />
               </span>
-              {t("Available for new work · Q3 2026")}
+              {t("Available for new work")} · {getCurrentQuarter()}
             </motion.p>
 
             {/* Locator follows the availability pill: stacked beneath it on
