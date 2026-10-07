@@ -68,7 +68,7 @@ const TRANSLATIONS: Record<string, string> = {
     "la arquitectura que los usuarios nunca ven y la interfaz que sienten cada segundo.",
   "Token usage": "Uso de tokens",
   tokens: "tokens",
-  Updated: "Actualizado hace",
+  Updated: "Actualizado",
   "See breakdown": "Ver detalle",
   offline: "sin conexión",
   "Global model usage": "Uso global de modelos",
