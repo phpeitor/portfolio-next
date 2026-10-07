@@ -5,7 +5,7 @@
 // revalidation window.
 import type { GeoLocation } from "@/lib/location"
 
-const TEMP_UNIT: "celsius" | "fahrenheit" = "fahrenheit"
+const TEMP_UNIT: "celsius" | "fahrenheit" = "celsius"
 
 // 6 hours. Each unique coordinate's fetch is served from the Data Cache for
 // this long.

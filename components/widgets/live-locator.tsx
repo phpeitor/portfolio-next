@@ -16,8 +16,7 @@ import type { GeoLocation } from "@/lib/location"
 import type { Weather } from "@/lib/weather"
 import { useLanguage } from "@/components/language-provider"
 
-const TEMP_UNIT: "celsius" | "fahrenheit" = "fahrenheit"
-const TEMP_SYMBOL = TEMP_UNIT === "fahrenheit" ? "°F" : "°C"
+const TEMP_SYMBOL = "°C"
 
 type IconComponent = React.ComponentType<{
   size?: number
