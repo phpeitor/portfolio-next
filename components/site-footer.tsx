@@ -65,7 +65,7 @@ export function SiteFooter(): React.ReactElement {
               amvsoft.tech
             </Link>
           </span>
-          <span>{t("last updated 07 / 26")}</span>
+          <span>{t("last updated 10 / 26")}</span>
         </div>
       </SectionShell>
     </footer>

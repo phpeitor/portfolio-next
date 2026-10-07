@@ -84,40 +84,40 @@ const TRANSLATIONS: Record<string, string> = {
   Showers: "Chubascos",
   Thunderstorm: "Tormenta",
   Cloudy: "Nublado",
-  "AI Interior Design Platform": "Plataforma de diseño interior con IA",
-  "A workflow-driven SaaS product for interior designers and architects, combining image transformation, regional processing, and public API delivery.":
-    "Producto SaaS orientado a flujos para diseñadores de interiores y arquitectos, con transformación de imágenes, procesamiento regional y API pública.",
-  "AI Headshot Generator": "Generador de retratos profesionales con IA",
-  "A polished consumer and team headshot experience with model training, image editing, credits, and premium generation flows.":
-    "Experiencia pulida para retratos individuales y de equipos, con entrenamiento de modelos, edición, créditos y generación premium.",
-  "Automation & Agent Systems": "Automatización y sistemas de agentes",
-  "Internal tools, workflow engines, and agent-backed systems designed to reduce manual operations and speed up product execution.":
-    "Herramientas internas, motores de flujos y sistemas con agentes para reducir operaciones manuales y acelerar la ejecución.",
-  "Document Intelligence": "Inteligencia documental",
-  "Extraction, classification, and review tooling that turns dense unstructured documents into structured, queryable records.":
-    "Herramientas de extracción, clasificación y revisión que convierten documentos densos y no estructurados en registros consultables.",
-  "Data Labeling Platform": "Plataforma de etiquetado de datos",
-  "A collaborative annotation surface with quality controls, reviewer queues, and exports tuned for fast model iteration.":
-    "Superficie colaborativa de anotación con controles de calidad, colas de revisión y exportaciones para iterar modelos rápidamente.",
+  "Dataset Report": "Dataset Reportes",
+  "Digital platform specializing in data management, exploration, and visualization, designed to transform complex information into structured datasets, interactive dashboards, and decision-oriented analysis tools.":
+  "Plataforma digital especializada en la gestión, exploración y visualización de datos, diseñada para transformar información compleja en datasets estructurados, dashboards interactivos y herramientas de análisis orientadas a la toma de decisiones.",
+  "Cotix360": "Cotix360",
+  "A web platform specialized in the management and automation of commercial quotes, designed to simplify cost and sales price calculations. Its flexible architecture integrates tools for managing products, commercial recipes, freight, factors, margins, and exchange rates.":
+  "Plataforma web especializada en la gestión y automatización de cotizaciones comerciales, diseñada para simplificar el cálculo de costos y precios de venta. Su arquitectura flexible integra herramientas para la gestión de productos, recetas comerciales, fletes, factores, márgenes y tipos de cambio.",
+  "Xintra Elephpant": "Xintra Elephpant",
+  "Its flexible architecture combines a responsive interface with reusable components, dynamic data visualization, and a user experience optimized for handling large volumes of data.":
+  "Su arquitectura flexible combina una interfaz responsive con componentes reutilizables, visualización dinámica de información y una experiencia de usuario optimizada para trabajar con grandes volúmenes de datos.",
+  "Marketo Ecommerce": "PHPeitor Ecommerce",
+  "A clean, vertically menued multi-vendor e-commerce platform, perfect for your online business. Marketo's design maximizes available space in an elegant and user-friendly way to showcase a wide range of products in various formats.":
+  "Multivendedor para comercio electrónico, limpio y con menú vertical, perfecto para tu negocio online. La idea de Marketo es aprovechar al máximo el espacio disponible de forma elegante y fácil de usar para mostrar una gran cantidad de productos de diferentes maneras.",
+  "Pixitor Media": "Pixitor Media",
+  "A digital solution specialized in professional photography, designed to create high-impact visual experiences and manage portfolios, galleries, and content delivery from a single environment.":
+  "Solución digital especializada en fotografía profesional, diseñada para crear experiencias visuales de alto impacto y gestionar portfolios, galerías y entregas de contenido desde un único entorno.",
   "Product engineering": "Ingeniería de producto",
   "End-to-end SaaS systems built for actual production load. Type-safe APIs, predictable data layers, and a frontend that survives real users without ceremony.":
-    "Sistemas SaaS integrales preparados para carga real de producción. APIs con tipos, capas de datos predecibles y un frontend resistente a usuarios reales.",
+  "Sistemas SaaS integrales preparados para carga real de producción. APIs con tipos, capas de datos predecibles y un frontend resistente a usuarios reales.",
   "AI workflow systems": "Sistemas de flujos con IA",
   "Image, text, and agent pipelines that respect latency, cost, and failure modes. The hard parts — queues, retries, observability — built in from day one.":
-    "Pipelines de imágenes, texto y agentes que cuidan la latencia, el coste y los fallos. Colas, reintentos y observabilidad desde el primer día.",
+  "Pipelines de imágenes, texto y agentes que cuidan la latencia, el coste y los fallos. Colas, reintentos y observabilidad desde el primer día.",
   "Interface design": "Diseño de interfaces",
   "Calm, opinionated product UI with restraint. Typography, hierarchy, and motion treated as engineering disciplines — not decoration applied at the end.":
-    "Interfaces de producto claras y con criterio. Tipografía, jerarquía y movimiento tratados como disciplinas de ingeniería.",
+  "Interfaces de producto claras y con criterio. Tipografía, jerarquía y movimiento tratados como disciplinas de ingeniería.",
   "Before any UI or schema. What does this product change for the people using it, and how do we know it worked?":
-    "Antes de cualquier UI o esquema. ¿Qué cambia este producto para quienes lo usan y cómo sabremos que funcionó?",
+  "Antes de cualquier UI o esquema. ¿Qué cambia este producto para quienes lo usan y cómo sabremos que funcionó?",
   "The shortest path between a real user and a real outcome. Everything else is deferred until the core is honest.":
-    "El camino más corto entre un usuario real y un resultado real. Todo lo demás espera hasta validar el núcleo.",
+  "El camino más corto entre un usuario real y un resultado real. Todo lo demás espera hasta validar el núcleo.",
   "Type-safe from edge to database. Observability, retries, and migrations as first-class — not bolted on under pressure.":
-    "Tipado de extremo a extremo. Observabilidad, reintentos y migraciones como elementos centrales, no añadidos bajo presión.",
+  "Tipado de extremo a extremo. Observabilidad, reintentos y migraciones como elementos centrales, no añadidos bajo presión.",
   "The last 20% is where products stop feeling like demos. Latency, copy, motion, edge cases — sanded down until they disappear.":
-    "El último 20% es donde los productos dejan de parecer demos. Latencia, copy, movimiento y casos límite pulidos hasta desaparecer.",
+  "El último 20% es donde los productos dejan de parecer demos. Latencia, copy, movimiento y casos límite pulidos hasta desaparecer.",
   "Designed & built with care by": "Diseñado y construido con cuidado por",
-  "last updated 07 / 26": "última actualización 07 / 26",
+  "last updated 10 / 26": "última actualización 10 / 26",
   "AI SaaS products": "Productos SaaS con IA",
   "Full-stack systems": "Sistemas full-stack",
   "Workflow automation": "Automatización de flujos",

@@ -47,68 +47,68 @@ export type Project = {
 export const PROJECTS: readonly Project[] = [
   {
     index: "01",
-    title: "AI Interior Design Platform",
+    title: "Dataset Report",
     description:
-      "A workflow-driven SaaS product for interior designers and architects, combining image transformation, regional processing, and public API delivery.",
-    year: "2025",
-    status: "Live · v3.2",
-    tags: ["AI SaaS", "Image workflows", "API", "B2B"],
+      "Digital platform specializing in data management, exploration, and visualization, designed to transform complex information into structured datasets, interactive dashboards, and decision-oriented analysis tools.",
+    year: "2026",
+    status: "Live · v1.2",
+    tags: ["AI SaaS", "charter workflows", "API", "B2B"],
     href: "#",
     image: "/assets/projects/interior-design-platform.png",
     imageAlt:
-      "Interior design platform UI showing a before/after room render with a materials palette and a generate-design control bar.",
+      "Digital platform UI showing a dataset dashboard with a table of structured records, a chart, and a map view of geospatial data.",
   },
   {
     index: "02",
-    title: "AI Headshot Generator",
+    title: "Cotix360",
     description:
-      "A polished consumer and team headshot experience with model training, image editing, credits, and premium generation flows.",
+      "A web platform specialized in the management and automation of commercial quotes, designed to simplify cost and sales price calculations. Its flexible architecture integrates tools for managing products, commercial recipes, freight, factors, margins, and exchange rates.",
     year: "2025",
     status: "Live",
-    tags: ["AI Images", "Product UX", "Credits", "Teams"],
+    tags: ["Web Platform", "Product UX", "Comercial", "Teams"],
     href: "#",
     image: "/assets/projects/headshot-generator.png",
     imageAlt:
-      "AI headshot generator UI with a grid of generated professional portraits, style and lighting controls, and a credits counter.",
+      "Web platform UI showing a headshot generation workflow with a model training panel, image editing tools, and a credits balance.",
   },
   {
     index: "03",
-    title: "Automation & Agent Systems",
+    title: "Xintra Elephpant",
     description:
-      "Internal tools, workflow engines, and agent-backed systems designed to reduce manual operations and speed up product execution.",
+      "Its flexible architecture combines a responsive interface with reusable components, dynamic data visualization, and a user experience optimized for handling large volumes of data.",
     year: "2024",
     status: "Private",
     tags: ["Automation", "Agents", "Workflows", "Infra"],
     href: "#",
     image: "/assets/projects/automation-agent-systems.png",
     imageAlt:
-      "Dark automation dashboard showing an agent workflow node graph alongside a live event stream and run log.",
+      "Web platform UI showing an agent workflow with a queue of tasks, a task detail panel, and a chart of system metrics.",
   },
   {
     index: "04",
-    title: "Document Intelligence",
+    title: "Marketo Ecommerce",
     description:
-      "Extraction, classification, and review tooling that turns dense unstructured documents into structured, queryable records.",
+      "A clean, vertically menued multi-vendor e-commerce platform, perfect for your online business. Marketo's design maximizes available space in an elegant and user-friendly way to showcase a wide range of products in various formats.",
     year: "2024",
     status: "Live",
-    tags: ["NLP", "Extraction", "Review UX", "Pipelines"],
+    tags: ["Bagisto", "Ecommerce", "Review UX", "Pipelines"],
     href: "#",
     image: "/assets/projects/document-intelligence.png",
     imageAlt:
-      "Document intelligence UI extracting structured fields from an invoice, with a review queue and confidence indicators.",
+      "E-commerce platform UI showing a product listing with a vertical menu, product cards, and a product detail panel with images, description, and reviews.",
   },
   {
     index: "05",
-    title: "Data Labeling Platform",
+    title: "Pixitor Media",
     description:
-      "A collaborative annotation surface with quality controls, reviewer queues, and exports tuned for fast model iteration.",
+      "A digital solution specialized in professional photography, designed to create high-impact visual experiences and manage portfolios, galleries, and content delivery from a single environment.",
     year: "2023",
     status: "Live",
-    tags: ["Labeling", "Collaboration", "QA", "Tooling"],
+    tags: ["Labeling", "Collaboration", "Photography", "Tooling"],
     href: "#",
     image: "/assets/projects/data-labeling-platform.png",
     imageAlt:
-      "Data labeling platform annotating a room scene with bounding boxes, a reviewer queue, and a quality score panel.",
+      "Web platform UI showing a data labeling workflow with a queue of images, a labeling panel, and a chart of labeling metrics.",
   },
 ]
 
@@ -230,7 +230,7 @@ export const STACK_PANES = [
 export const ABOUT_META = [
   ["Based", "Peru · UTC -5"],
   ["Practice", "AI-first SaaS products"],
-  ["Years shipping", "6+"],
+  ["Years shipping", "10+"],
   ["Availability", "Selected product builds"],
   ["Engagements", "Fractional · Build · Advisory"],
 ] as const
