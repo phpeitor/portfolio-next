@@ -48,8 +48,8 @@ function formatUpdatedAt(value: string, language: "en" | "es"): string {
     hour: "2-digit",
     minute: "2-digit",
     hour12: language === "en",
-    timeZone: "UTC",
-  }).format(date) + " UTC"
+    timeZone: "America/Lima",
+  }).format(date) + " PET"
 }
 
 type Props = {
