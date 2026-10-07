@@ -54,7 +54,7 @@ export const PROJECTS: readonly Project[] = [
     status: "Live · v1.2",
     tags: ["AI SaaS", "charter workflows", "API", "B2B"],
     href: "#",
-    image: "/assets/projects/interior-design-platform.png?v=2",
+    image: "/assets/projects/dataset-report.png?v=2",
     imageAlt:
       "Digital platform UI showing a dataset dashboard with a table of structured records, a chart, and a map view of geospatial data.",
   },
@@ -67,7 +67,7 @@ export const PROJECTS: readonly Project[] = [
     status: "Live",
     tags: ["Web Platform", "Product UX", "Comercial", "Teams"],
     href: "#",
-    image: "/assets/projects/headshot-generator.png?v=2",
+    image: "/assets/projects/cotix360.png?v=2",
     imageAlt:
       "Web platform UI showing a headshot generation workflow with a model training panel, image editing tools, and a credits balance.",
   },
@@ -80,7 +80,7 @@ export const PROJECTS: readonly Project[] = [
     status: "Private",
     tags: ["Automation", "Agents", "Workflows", "Infra"],
     href: "#",
-    image: "/assets/projects/automation-agent-systems.png?v=2",
+    image: "/assets/projects/xintra-elephpant.png?v=2",
     imageAlt:
       "Web platform UI showing an agent workflow with a queue of tasks, a task detail panel, and a chart of system metrics.",
   },
@@ -93,7 +93,7 @@ export const PROJECTS: readonly Project[] = [
     status: "Live",
     tags: ["Bagisto", "Ecommerce", "Review UX", "Pipelines"],
     href: "#",
-    image: "/assets/projects/document-intelligence.png?v=2",
+    image: "/assets/projects/marketo-ecommerce.png?v=2",
     imageAlt:
       "E-commerce platform UI showing a product listing with a vertical menu, product cards, and a product detail panel with images, description, and reviews.",
   },
@@ -106,7 +106,7 @@ export const PROJECTS: readonly Project[] = [
     status: "Live",
     tags: ["Labeling", "Collaboration", "Photography", "Tooling"],
     href: "#",
-    image: "/assets/projects/data-labeling-platform.png?v=2",
+    image: "/assets/projects/pixitor-media.png?v=2",
     imageAlt:
       "Web platform UI showing a data labeling workflow with a queue of images, a labeling panel, and a chart of labeling metrics.",
   },
