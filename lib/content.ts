@@ -228,7 +228,7 @@ export const STACK_PANES = [
 // --- About ----------------------------------------------------------------
 // components/contact.tsx (About band) — the meta definition list. [key, value].
 export const ABOUT_META = [
-  ["Based", "India · GMT +5:30"],
+  ["Based", "Peru · UTC -5"],
   ["Practice", "AI-first SaaS products"],
   ["Years shipping", "6+"],
   ["Availability", "Selected product builds"],

@@ -111,13 +111,13 @@ export function SiteHeader(): React.ReactElement {
         {/* Wordmark */}
         <Link
           href="/"
-          aria-label="CodeBucks, home"
+          aria-label="amvsoft.tech, home"
           className={cn(
             "group inline-flex items-center gap-1.5 text-[15px] font-medium tracking-[-0.01em]",
             styles.wordmark
           )}
         >
-          <span>CodeBucks</span>
+          <span>amvsoft.tech</span>
           <span
             aria-hidden
             className="size-1.5 rounded-full bg-primary transition-transform duration-500 ease-out group-hover:scale-125 group-hover:rotate-180"

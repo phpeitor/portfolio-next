@@ -47,7 +47,7 @@ export function SiteFooter(): React.ReactElement {
             <h4 className="caption-uppercase mb-4 text-muted-ink">Now</h4>
             <ul className="flex flex-col gap-2 text-sm">
               <li className="text-ink">Q3 2026 · 2 slots</li>
-              <li className="text-body">Remote · India</li>
+              <li className="text-body">Remote · Perú</li>
             </ul>
           </div>
         </div>

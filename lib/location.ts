@@ -9,7 +9,7 @@
 //      (x-vercel-ip-city / -latitude / -longitude / -timezone / -country).
 //   2. Local dev (no Vercel headers) → a free, no-key IP lookup (ipapi.co),
 //      which geolocates the dev machine's own public IP — i.e. you.
-//   3. Both unavailable → a hard-coded fallback (Bangalore, IN).
+//   3. Both unavailable → a hard-coded fallback (Lima, PE).
 // ─────────────────────────────────────────────────────────────────────────
 import { headers } from "next/headers"
 
@@ -20,17 +20,17 @@ export type GeoLocation = {
   region: string
   latitude: number
   longitude: number
-  /** IANA timezone name (e.g. "Asia/Kolkata") — used for the weather fetch. */
+  /** IANA timezone name (e.g. "America/Lima") — used for the weather fetch. */
   timezone: string
 }
 
 // Tier 3 — used when neither the Vercel headers nor the IP lookup resolve.
 const FALLBACK: GeoLocation = {
-  city: "bangalore",
-  region: "in",
-  latitude: 12.9716,
-  longitude: 77.5946,
-  timezone: "Asia/Kolkata",
+  city: "lima",
+  region: "pe",
+  latitude: -12.0775,
+  longitude: -77.0955,
+  timezone: "America/Lima",
 }
 
 export async function getLocation(): Promise<GeoLocation> {
