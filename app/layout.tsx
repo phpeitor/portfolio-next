@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   },
   description:
     "Full-stack engineer designing and shipping AI-native software from the inference layer to the last interaction.",
+  icons: {
+    icon: "/assets/favico.svg",
+  },
 }
 
 export const viewport: Viewport = {
