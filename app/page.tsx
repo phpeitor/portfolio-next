@@ -9,6 +9,7 @@ import { SelectedWork } from "@/components/selected-work"
 import { Stack } from "@/components/stack"
 import { getLocation } from "@/lib/location"
 import { getWeather } from "@/lib/weather"
+import { getModelRankings } from "@/lib/model-rankings"
 
 const title = "amvsoft.tech · Full-stack engineer, AI-first"
 const description =
@@ -50,10 +51,11 @@ export default async function Page(): Promise<React.ReactElement> {
   // the hero receives ready-to-render, serializable props (no client fetching).
   const location = await getLocation()
   const weather = await getWeather(location)
+  const modelRankings = await getModelRankings()
 
   return (
     <main className="relative">
-      <Hero location={location} weather={weather} />
+      <Hero location={location} weather={weather} modelRankings={modelRankings} />
       <PracticeStrip />
       <SelectedWork />
       <Capabilities />

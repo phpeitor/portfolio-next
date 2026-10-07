@@ -201,6 +201,20 @@ The site is built for **zero-config deployment**.
 
 That's it. Once deployed, the **live location + weather widget** starts working automatically, because Vercel provides the geolocation headers in production. 🌍
 
+### Global model usage widget
+
+The hero usage card can display daily global model rankings from
+[OpenRouter](https://openrouter.ai/rankings). Copy `.env.example` to
+`.env.local` and add an OpenRouter API key:
+
+```env
+OPENROUTER_API_KEY=your_key_here
+```
+
+The key is used only in the server-side ranking request and is never exposed
+to the browser. Without it, the widget explicitly shows that global data is
+unavailable instead of displaying sample values.
+
 ---
 
 ## 🛠️ Troubleshooting

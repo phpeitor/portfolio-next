@@ -17,6 +17,7 @@ import type { GeoLocation } from "@/lib/location"
 import type { Weather } from "@/lib/weather"
 import { TokenUsage as HeroWidget } from "@/components/widgets/token-usage"
 import { useLanguage } from "@/components/language-provider"
+import type { ModelRankings } from "@/lib/model-rankings"
 
 // Day vs. night background media. The day clip is the bright blue-sky scene;
 // the night clip is the warm golden-hour scene. Posters are the first frame of
@@ -47,9 +48,14 @@ type HeroProps = {
   location: GeoLocation
   /** Weather snapshot fetched on the server and passed to the locator strip. */
   weather: Weather | null
+  modelRankings: ModelRankings | null
 }
 
-export function Hero({ location, weather }: HeroProps): React.ReactElement {
+export function Hero({
+  location,
+  weather,
+  modelRankings,
+}: HeroProps): React.ReactElement {
   const { t } = useLanguage()
   const sectionRef = React.useRef<HTMLElement>(null)
   const videoRef = React.useRef<HTMLVideoElement>(null)
@@ -249,7 +255,7 @@ export function Hero({ location, weather }: HeroProps): React.ReactElement {
           className="pointer-events-none absolute right-6 bottom-24 z-10 hidden items-end justify-end sm:right-10 lg:right-14 lg:flex"
         >
           <div className="pointer-events-auto">
-            <HeroWidget />
+            <HeroWidget rankings={modelRankings} />
           </div>
         </motion.div>
 

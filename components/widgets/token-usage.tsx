@@ -10,14 +10,12 @@ import {
 } from "motion/react"
 import { ArrowUpRightIcon, GaugeIcon, XIcon } from "@phosphor-icons/react"
 
-import { TOKEN_USAGE } from "@/lib/content"
 import { cn } from "@/lib/utils"
 import { useLanguage } from "@/components/language-provider"
+import type { ModelRankings } from "@/lib/model-rankings"
 
 const PERIOD = {
-  label: "28 days",
-  updatedHoursAgo: 9,
-  url: "#",
+  label: "daily",
 }
 
 const OPACITY_LADDER = [1, 0.72, 0.5, 0.34, 0.24]
@@ -28,26 +26,12 @@ function formatTokens(n: number): string {
   return `${n}`
 }
 
-// `TOKEN_USAGE` is a static module constant that never changes, so we derive
-// the display data once at module load — outside the component — instead of
-// recomputing it on every render. Sort the rows biggest-first, total the
-// tokens, then attach each row's share of the total and its place on the
-// opacity ladder (so the largest model reads darkest).
-const TOTAL_TOKENS = TOKEN_USAGE.reduce((acc, row) => acc + row.tokens, 0)
-
-const ROWS = TOKEN_USAGE.toSorted((a, b) => b.tokens - a.tokens).map(
-  (row, index) => ({
-    ...row,
-    share: row.tokens / TOTAL_TOKENS,
-    opacity: OPACITY_LADDER[index] ?? OPACITY_LADDER.at(-1)!,
-  })
-)
-
 type Props = {
   className?: string
+  rankings: ModelRankings | null
 }
 
-export function TokenUsage({ className }: Props): React.ReactElement {
+export function TokenUsage({ className, rankings }: Props): React.ReactElement {
   const { t } = useLanguage()
   const [collapsed, setCollapsed] = React.useState(false)
   const prefersReducedMotion = useReducedMotion()
@@ -65,6 +49,13 @@ export function TokenUsage({ className }: Props): React.ReactElement {
     exit: { opacity: 0 },
     transition: fadeTransition,
   }
+  const rows = rankings?.rows ?? []
+  const totalTokens = rankings?.totalTokens ?? 0
+  const displayRows = rows.map((row, index) => ({
+    ...row,
+    share: totalTokens ? row.tokens / totalTokens : 0,
+    opacity: OPACITY_LADDER[index] ?? OPACITY_LADDER.at(-1)!,
+  }))
 
   return (
     <AnimatePresence initial={false} mode="wait">
@@ -91,13 +82,13 @@ export function TokenUsage({ className }: Props): React.ReactElement {
           <span className="truncate">{t("Token usage")}</span>
 
           <span className="font-mono text-[10px] tracking-[0.04em] text-overlay-cream/55">
-            {formatTokens(TOTAL_TOKENS)}
+            {rankings ? formatTokens(totalTokens) : t("offline")}
           </span>
         </motion.button>
       ) : (
         <motion.aside
           key="panel"
-          aria-label="Token usage, last 28 days"
+          aria-label={t("Global model usage")}
           {...fade}
           className={cn(
             "w-[280px] overflow-hidden rounded-xl border border-overlay-cream/15 bg-overlay-ink/55 p-5 text-overlay-cream shadow-sm backdrop-blur-[10px]",
@@ -120,7 +111,7 @@ export function TokenUsage({ className }: Props): React.ReactElement {
 
               <span className="truncate">{t("Token usage")}</span>
 
-              <span className="text-overlay-cream/70">· {PERIOD.label}</span>
+              <span className="text-overlay-cream/70">· {t(PERIOD.label)}</span>
             </button>
 
             <button
@@ -137,7 +128,7 @@ export function TokenUsage({ className }: Props): React.ReactElement {
             <div className="mt-4 border-t border-overlay-cream/12 pt-4">
               <div className="flex items-baseline gap-2">
                 <p className="text-[30px] leading-none tracking-[-0.025em]">
-                  {formatTokens(TOTAL_TOKENS)}
+                  {rankings ? formatTokens(totalTokens) : "—"}
                 </p>
                 <p className="text-[12px] text-overlay-cream/60">{t("tokens")}</p>
               </div>
@@ -147,7 +138,7 @@ export function TokenUsage({ className }: Props): React.ReactElement {
                 aria-label="Share of usage by model"
                 className="mt-3 flex h-[6px] gap-[2px]"
               >
-                {ROWS.map((row) => (
+                {displayRows.map((row) => (
                   <div
                     key={row.model}
                     style={{
@@ -161,7 +152,7 @@ export function TokenUsage({ className }: Props): React.ReactElement {
             </div>
 
             <ol className="mt-4 space-y-2.5">
-              {ROWS.map((row, index) => (
+              {displayRows.map((row, index) => (
                 <li
                   key={row.model}
                   className="flex items-baseline justify-between gap-3 text-[13px]"
@@ -207,11 +198,15 @@ export function TokenUsage({ className }: Props): React.ReactElement {
 
             <div className="mt-4 flex items-center justify-between gap-3 border-t border-overlay-cream/12 pt-3">
               <p className="font-mono text-[11px] tracking-[0.04em] text-overlay-cream/55">
-                {t("Updated")} {PERIOD.updatedHoursAgo}h
+                {rankings
+                  ? `${t("Updated")} ${rankings.updatedAt}`
+                  : t("Global data unavailable")}
               </p>
 
               <Link
-                href={PERIOD.url}
+                href={rankings?.sourceUrl ?? "https://openrouter.ai/rankings"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex shrink-0 items-center gap-1 text-[12px] text-overlay-cream/85 transition-colors hover:text-overlay-cream focus-visible:ring-2 focus-visible:ring-overlay-cream/45 focus-visible:outline-none"
               >
                 {t("See breakdown")}
