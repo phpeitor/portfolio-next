@@ -20,10 +20,36 @@ const PERIOD = {
 
 const OPACITY_LADDER = [1, 0.72, 0.5, 0.34, 0.24]
 
-function formatTokens(n: number): string {
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`
-  if (n >= 1_000) return `${Math.round(n / 1_000)}K`
-  return `${n}`
+function formatTokens(value: number): string {
+  const units = [
+    { threshold: 1_000_000_000, suffix: "B" },
+    { threshold: 1_000_000, suffix: "M" },
+    { threshold: 1_000, suffix: "K" },
+  ]
+  const unit = units.find(({ threshold }) => value >= threshold)
+
+  if (!unit) return new Intl.NumberFormat("en-US").format(value)
+
+  const amount = value / unit.threshold
+  const maximumFractionDigits = amount >= 100 ? 0 : amount >= 10 ? 1 : 2
+  return `${new Intl.NumberFormat("en-US", {
+    maximumFractionDigits,
+  }).format(amount)}${unit.suffix}`
+}
+
+function formatUpdatedAt(value: string, language: "en" | "es"): string {
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return value
+
+  return new Intl.DateTimeFormat(language === "es" ? "es-ES" : "en-US", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: language === "en",
+    timeZone: "UTC",
+  }).format(date) + " UTC"
 }
 
 type Props = {
@@ -32,7 +58,7 @@ type Props = {
 }
 
 export function TokenUsage({ className, rankings }: Props): React.ReactElement {
-  const { t } = useLanguage()
+  const { language, t } = useLanguage()
   const [collapsed, setCollapsed] = React.useState(false)
   const prefersReducedMotion = useReducedMotion()
 
@@ -199,7 +225,7 @@ export function TokenUsage({ className, rankings }: Props): React.ReactElement {
             <div className="mt-4 flex items-center justify-between gap-3 border-t border-overlay-cream/12 pt-3">
               <p className="font-mono text-[11px] tracking-[0.04em] text-overlay-cream/55">
                 {rankings
-                  ? `${t("Updated")} ${rankings.updatedAt}`
+                  ? `${t("Updated")} ${formatUpdatedAt(rankings.updatedAt, language)}`
                   : t("Global data unavailable")}
               </p>
 
