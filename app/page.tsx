@@ -11,7 +11,7 @@ import { getLocation } from "@/lib/location"
 import { getWeather } from "@/lib/weather"
 import { getModelRankings } from "@/lib/model-rankings"
 
-const title = "amvsoft.tech · Full-stack engineer, AI-first"
+const title = "Full-stack engineer, AI-first"
 const description =
   "Full-stack engineer designing and shipping AI-native software from the inference layer to the last interaction."
 
