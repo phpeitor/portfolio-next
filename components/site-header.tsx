@@ -8,6 +8,7 @@ import { ListIcon, XIcon } from "@phosphor-icons/react"
 import { NAV_LINKS } from "@/lib/content"
 import { cn } from "@/lib/utils"
 import { useLanguage } from "@/components/language-provider"
+import { LANGUAGES, LANGUAGE_LABELS } from "@/lib/i18n"
 
 type Variant = "overlay" | "solid"
 
@@ -161,17 +162,33 @@ export function SiteHeader(): React.ReactElement {
             <span aria-hidden className="size-1.5 rounded-full bg-success" />
             <span>{t("Let's talk")}</span>
           </Link>
-          <button
-            type="button"
-            onClick={() => setLanguage(language === "en" ? "es" : "en")}
-            aria-label={language === "en" ? "Cambiar a español" : "Switch to English"}
+          <div
+            role="group"
+            aria-label="Language"
             className={cn(
-              "hidden h-9 rounded-full border px-3 text-[11px] font-medium tracking-[0.08em] transition-colors md:inline-flex md:items-center",
+              "hidden h-9 items-center gap-0.5 rounded-full border p-0.5 md:inline-flex",
               styles.action
             )}
           >
-            {language === "en" ? "ES" : "EN"}
-          </button>
+            {LANGUAGES.map((code) => (
+              <button
+                key={code}
+                type="button"
+                lang={code}
+                aria-pressed={language === code}
+                aria-label={LANGUAGE_LABELS[code].name}
+                onClick={() => setLanguage(code)}
+                className={cn(
+                  "h-7 rounded-full px-2.5 text-[11px] font-medium tracking-[0.08em] transition-colors",
+                  language === code
+                    ? "bg-current/20"
+                    : "opacity-60 hover:opacity-100"
+                )}
+              >
+                {LANGUAGE_LABELS[code].code}
+              </button>
+            ))}
+          </div>
 
           {/* Hamburger — mobile/tablet only */}
           <button
@@ -263,17 +280,24 @@ export function SiteHeader(): React.ReactElement {
                 />
                 <span>{t("Let's talk")}</span>
               </Link>
-              <button
-                type="button"
-                onClick={() => setLanguage(language === "en" ? "es" : "en")}
-                className={cn(
-                  "flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-[15px] transition-colors",
-                  styles.panelLink
-                )}
-              >
-                <span>{language === "en" ? "Español" : "English"}</span>
-                <span className="font-mono text-[11px]">{language === "en" ? "ES" : "EN"}</span>
-              </button>
+              <div role="group" aria-label="Language" className="flex gap-2 px-4 py-3">
+                {LANGUAGES.map((code) => (
+                  <button
+                    key={code}
+                    type="button"
+                    lang={code}
+                    aria-pressed={language === code}
+                    onClick={() => setLanguage(code)}
+                    className={cn(
+                      "flex-1 rounded-lg border border-current/20 py-2 text-[13px] transition-colors",
+                      language === code ? "bg-current/15" : "opacity-60",
+                      styles.panelLink
+                    )}
+                  >
+                    {LANGUAGE_LABELS[code].name}
+                  </button>
+                ))}
+              </div>
             </motion.nav>
           </>
         )}

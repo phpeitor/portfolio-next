@@ -1,6 +1,21 @@
-export type Language = "en" | "es"
+import { DE } from "@/lib/i18n-de"
 
-const TRANSLATIONS: Record<string, string> = {
+export const LANGUAGES = ["en", "es", "de"] as const
+export type Language = (typeof LANGUAGES)[number]
+
+export const LANGUAGE_LABELS: Record<Language, { code: string; name: string }> = {
+  en: { code: "EN", name: "English" },
+  es: { code: "ES", name: "Español" },
+  de: { code: "DE", name: "Deutsch" },
+}
+
+export const INTL_LOCALES: Record<Language, string> = {
+  en: "en-US",
+  es: "es-ES",
+  de: "de-DE",
+}
+
+const ES: Record<string, string> = {
   Work: "Trabajo",
   Capabilities: "Capacidades",
   Approach: "Proceso",
@@ -135,6 +150,8 @@ const TRANSLATIONS: Record<string, string> = {
   "editing": "editando",
 }
 
+const DICTIONARIES: Record<Language, Record<string, string>> = { en: {}, es: ES, de: DE }
+
 export function translate(value: string, language: Language): string {
-  return language === "es" ? (TRANSLATIONS[value] ?? value) : value
+  return DICTIONARIES[language][value] ?? value
 }

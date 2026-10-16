@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils"
 import type { GeoLocation } from "@/lib/location"
 import type { Weather } from "@/lib/weather"
 import { useLanguage } from "@/components/language-provider"
+import { INTL_LOCALES } from "@/lib/i18n"
 
 const TEMP_SYMBOL = "°C"
 
@@ -54,7 +55,7 @@ export function LiveLocator({
   location,
   weather,
 }: Props): React.ReactElement {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   // Live wall-clock. Null on the server and the first client paint (so the SSR
   // and hydrated markup match), then set on mount and ticked every 30s.
   const [now, setNow] = React.useState<Date | null>(null)
@@ -71,12 +72,12 @@ export function LiveLocator({
     if (!now) return null
     // The visitor's own browser/system time — no fixed timeZone, so it resolves
     // to their local zone. (Same clock the hero uses to pick day vs. night.)
-    return new Intl.DateTimeFormat("en-US", {
+    return new Intl.DateTimeFormat(INTL_LOCALES[language], {
       hour: "numeric",
       minute: "2-digit",
-      hour12: true,
+      hour12: language === "en",
     }).format(now)
-  }, [now])
+  }, [now, language])
 
   const wx = weather ? weatherFor(weather.code) : null
   const WeatherIcon = wx?.Icon

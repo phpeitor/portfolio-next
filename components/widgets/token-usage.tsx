@@ -12,6 +12,7 @@ import { ArrowUpRightIcon, GaugeIcon, XIcon } from "@phosphor-icons/react"
 
 import { cn } from "@/lib/utils"
 import { useLanguage } from "@/components/language-provider"
+import { INTL_LOCALES, type Language } from "@/lib/i18n"
 import type { ModelRankings } from "@/lib/model-rankings"
 
 const PERIOD = {
@@ -37,11 +38,11 @@ function formatTokens(value: number): string {
   }).format(amount)}${unit.suffix}`
 }
 
-function formatUpdatedAt(value: string, language: "en" | "es"): string {
+function formatUpdatedAt(value: string, language: Language): string {
   const date = new Date(value)
   if (Number.isNaN(date.getTime())) return value
 
-  return new Intl.DateTimeFormat(language === "es" ? "es-ES" : "en-US", {
+  return new Intl.DateTimeFormat(INTL_LOCALES[language], {
     day: "2-digit",
     month: "short",
     year: "numeric",

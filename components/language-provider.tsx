@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { translate, type Language } from "@/lib/i18n"
+import { LANGUAGES, translate, type Language } from "@/lib/i18n"
 
 type LanguageContextValue = {
   language: Language
@@ -23,8 +23,11 @@ export function LanguageProvider({
     const stored = window.localStorage.getItem("language")
     // The persisted preference is external browser state and is read once
     // after hydration to keep the server and first client render identical.
+    const next = LANGUAGES.find((code) => code === stored)
+    if (!next) return
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (stored === "en" || stored === "es") setLanguageState(stored)
+    setLanguageState(next)
+    document.documentElement.lang = next
   }, [])
 
   const setLanguage = React.useCallback((next: Language) => {
