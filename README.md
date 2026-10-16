@@ -1,324 +1,189 @@
-# Modern Developer Portfolio
+# Portfolio Next.js — amvsoft.tech
 
-**A sleek, editorial-style developer portfolio built with Next.js 16, Tailwind v4, and Motion.** Warm cream canvas, hairline depth, light-weight display type — and a signature day/night hero that swaps a live background video with smooth choreography.
+Portfolio personal orientado a ingeniería **full-stack y AI-first**. La aplicación presenta proyectos, capacidades, proceso de trabajo y stack técnico en una experiencia editorial responsive, con un hero dinámico que adapta su contexto visual al momento del día y a la ubicación aproximada del visitante.
 
-![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=next.js&logoColor=white)
-![React 19](https://img.shields.io/badge/React-19-087EA4?style=flat-square&logo=react&logoColor=white)
-![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Motion](https://img.shields.io/badge/Motion-Framer-0055FF?style=flat-square&logo=framer&logoColor=white)
-![License](https://img.shields.io/badge/License-Single_Buyer-f54e00?style=flat-square)
+El proyecto está construido con Next.js App Router y prioriza:
 
-![Portfolio hero — day mode](./project-images/Portfolio-Hero-Day.png)
+- renderizado de datos en el servidor;
+- una fuente centralizada para el contenido del portfolio;
+- caché y revalidación para servicios externos;
+- accesibilidad, responsive design y soporte para `prefers-reduced-motion`;
+- una superficie de configuración pequeña, sin backend propio ni base de datos.
 
-> 🎉 **Do not forget to star the repo!** You're holding the complete, production-ready source code. This README walks you from an empty folder to a live site — even if you've never touched Next.js before. Take your time; every step is spelled out.
+## Contexto del producto
 
-> 📺 Prefer to follow along? The full build is on YouTube → **[Watch the tutorial](https://youtu.be/1qJEZVr6eXE)**
+Este sitio no es una aplicación CRUD: es una **landing page de alto impacto para convertir visitas en conversaciones profesionales**. Cada sección cumple una función concreta dentro del recorrido:
 
----
+1. **Hero:** comunica posicionamiento, disponibilidad, ubicación, clima y contexto de IA.
+2. **Practice strip:** resume el enfoque técnico.
+3. **Selected Work:** muestra evidencia de producto y ejecución.
+4. **Capabilities:** agrupa las áreas de especialización.
+5. **Approach:** explica el proceso de trabajo.
+6. **Stack:** hace visible el criterio tecnológico.
+7. **Contact:** convierte el interés en una acción.
 
-## ✨ Features
+La interfaz mantiene una estética editorial: canvas cálido, tipografía display ligera, bordes sutiles y un acento naranja. Los tokens visuales viven en `app/globals.css`, por lo que los cambios de marca no requieren editar cada componente.
 
-- 🌗 **Interactive day/night switch in the hero** — the signature feature. A single toggle swaps a *day* background video for a *night* one, with choreographed transitions across the whole hero.
-- 📍 **Live visitor location + real-time weather widget** — server-side geolocation and live weather, with **zero API keys**. It just works.
-- 📊 **AI token-usage widget** — an animated stat card that brings numbers to life.
-- 🎨 **Editorial "magazine-style" design system** — warm cream canvas, hairline borders instead of drop shadows, light-weight display type with negative tracking, and a single restrained orange accent.
-- 🖼️ **Selected Work** — an animated project carousel.
-- 🧩 **Capabilities** — a section powered by hand-crafted, animated icons.
-- 🪜 **Approach / process**, a faux code-editor **Stack** section, plus **About** and **Contact**.
-- 🧭 **Scroll-aware header** — a mobile menu and a smooth overlay → solid transition on scroll, with a footer to match.
-- 🎬 **Choreographed scroll reveals** via a reusable `Reveal` component, with full `prefers-reduced-motion` support.
-- 📱 **Fully responsive** and **content-centralized** — nearly all copy lives in one file, so customizing is mostly editing text.
-- ▲ **Deploys to Vercel with zero config** — the location + weather widget goes live automatically once deployed.
+## Arquitectura y flujo de datos
 
----
+La página principal es un Server Component. En cada render, `app/page.tsx` obtiene los datos contextuales y los entrega al hero como props serializables. Los servicios externos se consultan en el servidor: las credenciales nunca llegan al navegador.
 
-## 🧱 Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Framework | **Next.js 16** (App Router · Turbopack) |
-| UI library | **React 19** |
-| Language | **TypeScript** |
-| Styling | **Tailwind CSS v4** (CSS-first config) |
-| Components | **shadcn/ui** |
-| Animation | **Motion** (Framer Motion) via `motion/react` |
-| Icons | **@phosphor-icons/react** |
-| Theming | **next-themes** |
-| Fonts | **Geist** + **Geist Mono** |
-| Weather API | **Open-Meteo** (free · keyless) |
-| Geolocation | **Vercel geo headers** in prod · **ipapi.co** fallback in dev |
-| Package manager | **Bun** (npm / pnpm / yarn also work) |
-
-> 🔑 **No API keys, no `.env` file, nothing to sign up for.** The weather and location features run entirely on free, keyless services.
-
----
-
-## 📁 Project Structure
-
-```
-modern-portfolio/
-├─ app/                  # App Router: pages, layout.tsx, globals.css (design tokens)
-├─ components/           # Portfolio sections (hero, selected-work, capabilities…)
-│  ├─ ui/                # shadcn/ui primitives
-│  └─ widgets/           # Location + weather and token-usage widgets
-├─ lib/
-│  ├─ content.ts         # ⭐ All site copy, projects, and links — your main edit point
-│  ├─ prompts.md         # 🎨 AI prompts used to generate the day/night hero image + video
-│  ├─ weather.ts         # Open-Meteo weather fetching
-│  └─ location.ts        # Server geolocation (Vercel headers + ipapi.co fallback)
-├─ public/assets/        # Hero videos, posters, and project images
-└─ project-images/       # Screenshots used in this README
+```mermaid
+flowchart TD
+    Browser[Visitante] --> Next[Next.js App Router]
+    Next --> Page[app/page.tsx]
+    Page --> Location[lib/location.ts]
+    Location -->|Producción| VercelGeo[Vercel Geo Headers]
+    Location -->|Desarrollo| IPAPI[ipapi.co]
+    Location --> Fallback[Fallback: Lima, PE]
+    Page --> Weather[lib/weather.ts]
+    Weather --> OpenMeteo[Open-Meteo]
+    Page --> Rankings[lib/model-rankings.ts]
+    Rankings --> OpenRouter[OpenRouter Rankings]
+    Page --> Hero[Hero + secciones]
+    Location --> Hero
+    Weather --> Hero
+    Rankings --> Hero
+    Hero --> Browser
+    Content[lib/content.ts] --> Hero
+    Content --> Sections[Work / Capabilities / Approach / Stack / Contact]
+    Sections --> Browser
 ```
 
-> 💡 **The one file to remember:** `lib/content.ts`. It holds your nav, projects, capabilities, stack, and footer links. Editing it is how you make the site yours.
+### Decisiones técnicas relevantes
 
----
+- **Ubicación:** en Vercel se priorizan `x-vercel-ip-*`; en local se usa `ipapi.co`; si ambos fallan, se muestra una ubicación estable de Lima.
+- **Clima:** Open-Meteo recibe coordenadas redondeadas a dos decimales para compartir entradas de caché entre visitantes cercanos y evitar precisión innecesaria.
+- **Revalidación:** clima cada 6 horas y rankings de modelos cada hora mediante la Data Cache de Next.js.
+- **Rankings:** son opcionales. Sin `OPENROUTER_API_KEY`, el widget informa que los datos globales no están disponibles; no se muestran valores ficticios.
+- **Motion:** las animaciones se concentran en componentes reutilizables y respetan `prefers-reduced-motion`.
+- **Contenido:** `lib/content.ts` funciona como contrato editorial para navegación, proyectos, capacidades, stack y enlaces.
 
-## 🚀 Getting Started
+## Stack
 
-New to all this? No problem. Follow the steps in order.
+| Capa | Tecnología |
+| --- | --- |
+| Framework | Next.js 16.1 · App Router · Turbopack |
+| UI | React 19.2 |
+| Lenguaje | TypeScript 5.9 |
+| Estilos | Tailwind CSS v4 · PostCSS |
+| Componentes | shadcn/ui · Radix/Base UI |
+| Animación | Motion (`motion/react`) |
+| Iconos | `@phosphor-icons/react` |
+| Fuentes | Geist y Geist Mono |
+| Clima | Open-Meteo |
+| Geolocalización | Vercel Geo Headers + `ipapi.co` en local |
+| Rankings de modelos | OpenRouter API, opcional |
+| Package manager | Bun (también npm, pnpm o yarn) |
 
-### 1. Accept your GitHub invitation
+## Estructura del proyecto
 
-After purchase, an invitation to this **private repository** is sent to the GitHub account tied to your checkout email.
+```text
+.
+├── app/
+│   ├── layout.tsx          # Metadata, fuentes, header/footer y providers
+│   ├── page.tsx            # Composición server-side de la página
+│   └── globals.css         # Tokens de diseño y estilos globales
+├── components/
+│   ├── ui/                 # Primitivas reutilizables
+│   ├── widgets/            # Widgets con comportamiento específico
+│   └── *.tsx               # Secciones del portfolio
+├── lib/
+│   ├── content.ts          # Fuente central de contenido editorial
+│   ├── location.ts         # Resolución server-side de ubicación
+│   ├── weather.ts          # Consulta cacheada a Open-Meteo
+│   ├── model-rankings.ts   # Consulta opcional a OpenRouter
+│   ├── i18n.ts             # Traducciones y helpers de idioma
+│   ├── motion.ts           # Variantes compartidas de animación
+│   └── utils.ts            # Utilidades comunes
+├── public/assets/          # Videos, posters, favicon e imágenes de proyectos
+├── next.config.mjs         # Configuración de imágenes locales
+├── package.json            # Scripts y dependencias
+└── bun.lock                # Lockfile reproducible de Bun
+```
 
-1. Check your email for a message from **GitHub** (subject line mentions being invited to a repository). Also check the **Notifications** bell on [github.com](https://github.com).
-2. Click **View invitation**, then **Accept invitation**.
-3. You now have full access to this repo. 🎉
+## Requisitos
 
-> ℹ️ Don't have a GitHub account yet? Create a free one at [github.com/signup](https://github.com/signup) using the **same email** you paid with, then look for the invite.
+- Node.js `20.9+` o Bun `1.2+`.
+- Una clave de OpenRouter solo si se quiere activar el widget de rankings globales.
 
-### 2. Get the code onto your computer
-
-Pick whichever feels comfortable — both give you the same files.
-
-<details>
-<summary><strong>🟢 Option A — Download as a ZIP (easiest, no tools)</strong></summary>
-
-1. On the repository page, click the green **`< > Code`** button.
-2. Choose **Download ZIP**.
-3. Unzip the folder somewhere you'll find it (e.g. your Desktop).
-
-</details>
-
-<details>
-<summary><strong>🔵 Option B — Clone with Git (recommended if you'll update later)</strong></summary>
+## Instalación y desarrollo
 
 ```bash
-git clone https://github.com/codebucks27/Nextjs-Developer-Portfolio.git
-cd Nextjs-Developer-Portfolio
-```
-
-</details>
-
-### 3. Install a package manager
-
-You need **Node.js 20.9+** (or **Bun 1.2+**). If you're not sure what you have, install one of these:
-
-- **Node.js** (works with npm, pnpm, yarn) → [nodejs.org](https://nodejs.org) — grab the **LTS** version.
-- **Bun** (fastest, recommended) → [bun.sh](https://bun.sh).
-
-### 4. Install dependencies
-
-Open a terminal **inside the project folder**, then run the command for your package manager:
-
-<details open>
-<summary><strong>Bun (recommended)</strong></summary>
-
-```bash
+git clone https://github.com/phpeitor/portfolio-next.git
+cd portfolio-next
 bun install
+bun dev
 ```
 
-</details>
-
-<details>
-<summary><strong>npm / pnpm / yarn</strong></summary>
+Abre [http://localhost:3000](http://localhost:3000). También puedes usar npm, pnpm o yarn:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn
+npm run dev
 ```
 
-</details>
+### Variables de entorno
 
-### 5. Start the dev server
-
-```bash
-bun dev        # or: npm run dev / pnpm dev / yarn dev
-```
-
-Then open **[http://localhost:3000](http://localhost:3000)** in your browser. You should see your portfolio running live. Edits save and refresh instantly. ✨
-
-### 6. Build for production
-
-When you're ready to ship:
-
-```bash
-bun run build    # or: npm run build
-bun run start    # or: npm run start  — serve the production build locally
-```
-
----
-
-## 🎨 Make It Yours
-
-Almost everything is designed to be edited without hunting through code.
-
-| What you want to change | Where to do it |
-|---|---|
-| ✍️ **Copy, projects, links** (nav, work, capabilities, stack, footer) | `lib/content.ts` — one central file |
-| 🖼️ **Hero videos, posters, project images** | Swap files in `public/assets/` (keep the same filenames, or update the paths in `content.ts`) |
-| 🤖 **Generate your own hero media with AI** | `lib/prompts.md` — the exact image + video prompts used to create the day/night hero backgrounds |
-| 🎨 **Colors, fonts, spacing** (design tokens) | `app/globals.css` — the `@theme` block |
-| 🧾 **Site metadata** (title, description, social preview) | `app/layout.tsx` |
-
-**Tips:**
-
-> 🎥 To change the day/night hero backgrounds, replace `hero-background-video.mp4` / `hero-night-video.mp4` and their `hero-day-poster.webp` / `hero-night-poster.webp` posters in `public/assets/`. Keep videos lean (short, compressed) for fast loads.
-
-> 🤖 Want to create your **own** day/night hero scene with AI? Open **`lib/prompts.md`** — it contains the ready-to-use prompts: an image-generation prompt (ChatGPT) for the day scene, a follow-up prompt that converts it to a golden-hour night version, and a video-generation prompt (Google Gemini) that animates the image into a subtle looping background.
-
-> 🎨 The design system is token-driven. Change one value in `app/globals.css` (like the orange accent or the cream canvas) and it flows through the entire site — no find-and-replace needed.
-
-> ✅ After any change, it's worth running `bun run typecheck` — TypeScript will flag typos in content or props before you even open the browser.
-
----
-
-## ▲ Deploy to Vercel
-
-The site is built for **zero-config deployment**.
-
-1. Push your copy to your own GitHub repository (or import the folder directly).
-2. Go to [vercel.com/new](https://vercel.com/new) and **import** the repository.
-3. Click **Deploy** no environment variables to set.
-
-That's it. Once deployed, the **live location + weather widget** starts working automatically, because Vercel provides the geolocation headers in production. 🌍
-
-### Global model usage widget
-
-The hero usage card can display daily global model rankings from
-[OpenRouter](https://openrouter.ai/rankings). Copy `.env.example` to
-`.env.local` and add an OpenRouter API key:
+La única variable opcional es:
 
 ```env
-OPENROUTER_API_KEY=your_key_here
+OPENROUTER_API_KEY=tu_clave_de_openrouter
 ```
 
-The key is used only in the server-side ranking request and is never exposed
-to the browser. Without it, the widget explicitly shows that global data is
-unavailable instead of displaying sample values.
+Guárdala en `.env.local`. La variable solo se consume en `lib/model-rankings.ts`, en el servidor. No la expongas en variables con prefijo `NEXT_PUBLIC_` ni la incluyas en el repositorio.
 
----
+## Personalización
 
-## 🛠️ Troubleshooting
+| Necesidad | Archivo |
+| --- | --- |
+| Nombre, biografía, navegación, proyectos y enlaces | [`lib/content.ts`](./lib/content.ts) |
+| Colores, tipografía, spacing y tokens | [`app/globals.css`](./app/globals.css) |
+| SEO, Open Graph, favicon y fuentes | [`app/layout.tsx`](./app/layout.tsx) |
+| Composición de la home y metadata específica | [`app/page.tsx`](./app/page.tsx) |
+| Hero de día/noche y posters | `public/assets/` |
+| Prompts de generación de media | [`lib/prompts.md`](./lib/prompts.md) |
 
-<details>
-<summary><strong>"Node version" or engine errors on install</strong></summary>
+Para sustituir los videos del hero, conserva los nombres `hero-background-video.mp4` y `hero-night-video.mp4`, o actualiza las rutas en el componente correspondiente. Mantén los archivos comprimidos y breves para no penalizar el LCP.
 
-You need **Node.js 20.9 or newer** (or Bun 1.2+). Check your version with `node -v`. If it's older, install the latest **LTS** from [nodejs.org](https://nodejs.org) and try again.
+## Calidad y comandos
 
-</details>
+| Comando | Propósito |
+| --- | --- |
+| `bun dev` | Desarrollo con Turbopack |
+| `bun run build` | Build optimizado de producción |
+| `bun run start` | Servir el build de producción |
+| `bun run lint` | Ejecutar ESLint |
+| `bun run typecheck` | Validar tipos sin emitir archivos |
+| `bun run format` | Formatear TypeScript/TSX con Prettier |
+| `bun run doctor` | Diagnóstico de React |
 
-<details>
-<summary><strong>Port 3000 is already in use</strong></summary>
-
-Another app is using the port. Either stop that app, or run the dev server on a different port:
+Antes de abrir un pull request:
 
 ```bash
-bun dev --port 3001        # or: npm run dev -- --port 3001
+bun run typecheck
+bun run lint
+bun run build
 ```
 
-Then open `http://localhost:3001`.
+## Despliegue
 
-</details>
+El proyecto está preparado para Vercel sin configuración adicional:
 
-<details>
-<summary><strong>Something feels off after switching package managers</strong></summary>
+1. Importa el repositorio en [Vercel](https://vercel.com/new).
+2. Configura `OPENROUTER_API_KEY` únicamente si necesitas rankings.
+3. Usa `bun run build` como verificación local antes de desplegar.
+4. Publica.
 
-Stick to one package manager per project. If you started with npm and switched to Bun (or vice versa), delete `node_modules` and the other lockfile, then reinstall. When in doubt, use **`bun dev`** — the project is tuned for Bun.
+En producción, Vercel proporciona los headers de geolocalización que consume `lib/location.ts`. Si esos headers no están disponibles, el código conserva el fallback definido y la página sigue siendo renderizable.
 
-</details>
+## Operación y límites conocidos
 
-<details>
-<summary><strong>The weather / location widget shows nothing in local dev</strong></summary>
+- `ipapi.co` puede aplicar rate limits durante el desarrollo local; el fallback evita bloquear el render.
+- Open-Meteo y OpenRouter pueden no responder. Los widgets degradan a un estado sin datos y no deben impedir que el portfolio se renderice.
+- La ubicación es aproximada y se usa solo para enriquecer la experiencia visual; no es un mecanismo de autenticación ni de identificación.
+- El proyecto no persiste datos de visitantes y no requiere base de datos.
 
-Locally it uses the free ipapi.co fallback, which can occasionally rate-limit. This resolves itself, and in production on Vercel it uses Vercel's own geo headers — reliably and instantly.
+## Licencia
 
-</details>
-
----
-
-## 📜 Scripts
-
-| Command | What it does |
-|---|---|
-| `bun dev` | Start the local dev server (Turbopack) |
-| `bun run build` | Create an optimized production build |
-| `bun run start` | Serve the production build locally |
-| `bun run lint` | Run ESLint |
-| `bun run format` | Format files with Prettier |
-| `bun run typecheck` | Type-check with `tsc --noEmit` |
-
-> Using npm/pnpm/yarn? Swap `bun` for `npm run` / `pnpm` / `yarn` (e.g. `npm run dev`).
-
----
-
-## 💬 Support & Contact
-
-Questions, or want a fully custom build?
-
-- ✉️ Email — [codebucks27@gmail.com](mailto:codebucks27@gmail.com)
-- 📺 YouTube — [youtube.com/codebucks](https://www.youtube.com/codebucks)
-- 🐦 X / Twitter — [@code_bucks](https://twitter.com/code_bucks)
-- 🌐 Website — [devdreaming.com](https://devdreaming.com)
-- 🧩 **Need a custom website?** [Start a project →](https://tally.so/r/wdlj0N)
-
----
-
-## 📸 More Screenshots
-
-### 🌙 Hero — Night mode
-![Portfolio hero — night mode](./project-images/Portfolio-Hero-Night.png)
-
-### 🗂️ Selected Work
-![Selected Work section](./project-images/Portfolio-Selected-Work-Section.png)
-
-### 🧩 Capabilities
-![Capabilities section](./project-images/Portfolio-Capabilities-Section.png)
-
-### 🪜 Approach
-![Approach section](./project-images/Portfolio-Approach-Section.png)
-
-### 💻 Stack
-![Stack section](./project-images/Portfolio-Stack-Section.png)
-
-### ✉️ Contact
-![Contact section](./project-images/Portfolio-Contact-Section.png)
-
-### 🔻 Footer
-![Footer section](./project-images/Portfolio-Footer-Section.png)
-
----
-
-## 🔒 Fair Use
-
-**✅ You may:**
-- Use it for your **own** personal or commercial portfolio.
-- Modify it freely change the design, content, and code however you like.
-- Deploy your customized version anywhere.
-
-**🚫 You may not:**
-- Share, resell, or redistribute the source code.
-
-> 🙏 **Thank you for supporting the channel.** Your support directly funds more free tutorials and open projects. It genuinely means a lot. Now go build something beautiful. - **CodeBucks**
-
-## Other project
-
-From the creator: [SmartHeadshots AI](https://www.smartheadshots.ai/), a tool for creating AI headshots.
+Consulta [`LICENSE`](./LICENSE) para las condiciones de uso, modificación y distribución del código.
