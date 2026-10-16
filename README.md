@@ -3,11 +3,11 @@
 [![forthebadge](https://forthebadge.com/badges/made-with-next-13.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
 
-<a href="https://amvsoft.metadatape.com/assets/hero-background-video.mp4">
+<a href="https://amvsoft.metadatape.com/assets/hero-night-video.mp4">
     <img src="https://amvsoft.metadatape.com/assets/hero-night-poster.webp" alt="Portfolio hero en modo nocturno">
 </a>
 
-Portfolio personal orientado a ingeniería **full-stack y AI-first**. La aplicación presenta proyectos, capacidades, proceso de trabajo y stack técnico en una experiencia editorial responsive, con un hero dinámico que adapta su contexto visual al momento del día y a la ubicación aproximada del visitante.
+> 🧩 **Portfolio personal orientado a ingeniería** personal orientado a ingeniería **full-stack y AI-first**. La aplicación presenta proyectos, capacidades, proceso de trabajo y stack técnico en una experiencia editorial responsive, con un hero dinámico que adapta su contexto visual al momento del día y a la ubicación aproximada del visitante.
 
 El proyecto está construido con Next.js App Router y prioriza:
 
