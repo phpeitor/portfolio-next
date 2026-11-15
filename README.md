@@ -305,6 +305,8 @@ Questions, or want a fully custom build?
 
 > 🙏 **Thank you for supporting the channel.** Your support directly funds more free tutorials and open projects. It genuinely means a lot. Now go build something beautiful. - **CodeBucks**
 
-## Other project
+## Other projects
 
 From the creator: [SmartHeadshots AI](https://www.smartheadshots.ai/), a tool for creating AI headshots.
+
+Another project of mine is AI Room Design, an app for [AI-powered interior design](https://www.airoomdesignapp.com).
