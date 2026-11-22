@@ -22,7 +22,7 @@ export function Contact(): React.ReactElement {
         aria-hidden
         placeholder="blur"
         sizes="100vw"
-        className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover object-[25%] opacity-20 sm:object-top-left sm:opacity-[0.4]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 aspect-[4/5] w-full object-cover object-[15%_center] opacity-25 max-lg:[mask-image:linear-gradient(to_bottom,transparent,#000_40%)] sm:aspect-video sm:object-center sm:opacity-30 lg:inset-0 lg:aspect-auto lg:h-full lg:object-top-left lg:opacity-[0.4]"
       />
       {/* Cloudy fades: melt the image into the canvas at the top + bottom edges */}
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-canvas via-canvas/60 to-transparent" />
